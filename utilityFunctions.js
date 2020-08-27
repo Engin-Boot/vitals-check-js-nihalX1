@@ -1,6 +1,9 @@
 
 function checkBpmAndSpo2(bpm, spo2){
-    if(bpm < 70 || bpm > 150 || spo2<90) {
+    if(bpm < 70 || bpm > 150) {
+        return false;
+    }
+    else if(spo2<90){
         return false;
     }
     return true;
