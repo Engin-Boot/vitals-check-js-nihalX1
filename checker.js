@@ -1,8 +1,9 @@
 var utilities = require('./utilityFunctions.js');
+const { checkAll1 } = require('./utilityFunctions.js');
 const expect = require('chai').expect;
 
 function vitalsAreOk(bpm, spo2, respRate) {
-    if( !utilities.checkBpmAndSpo2(bpm, spo2) || !utilities.checkResprate(respRate) ){
+    if( checkAll1(bpm, spo2, respRate) ){
         return false;
     }
     return true;
