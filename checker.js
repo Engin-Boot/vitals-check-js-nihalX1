@@ -2,7 +2,7 @@ var utilities = require('./utilityFunctions.js');
 const expect = require('chai').expect;
 
 function vitalsAreOk(bpm, spo2, respRate) {
-    if( !utilities.checkBpm(bpm) || !utilities.checkSpo2(spo2) || !utilities.checkResprate(respRate) ){
+    if( !utilities.checkBpmAndSpo2(bpm, spo2) || !utilities.checkResprate(respRate) ){
         return false;
     }
     return true;
