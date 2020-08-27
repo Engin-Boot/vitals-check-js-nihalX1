@@ -2,27 +2,20 @@ var utilities = require('./utilityFunctions.js');
 const expect = require('chai').expect;
 
 function vitalsAreOk(bpm, spo2, respRate) {
-    if( utilities.checkAll1(bpm, spo2, respRate) ){
-        return false;
-    }
-    return true;
+    return utilities.isAllVitalsFine(bpm, spo2, respRate);
 }
 
 function findAbnormalVital(bpm, spo2, respRate){
-    let string1="";
-    if(!utilities.checkBpm(bpm)){
-        string1 += "BPM "+utilities.findHighOrLowBpm(bpm)+"\n";
-    }
-    if(!utilities.checkResprate(respRate)){
-        string1 += "RespRate "+ utilities.findHighOrLowResprate(respRate)+"\n";;
-    }
-    if(!utilities.checkSpo2(spo2)){
-        string1 += "Spo2 "+ utilities.findHighOrLowSpo2(spo2)+"\n";;
-    }
-    console.log(string1);
+    let vitalStatus = "";
+
+    vitalStatus += "BPM "+utilities.findHighOrLowBpm(bpm)+"\n";
+    vitalStatus += "RespRate "+ utilities.findHighOrLowResprate(respRate)+"\n";;
+    vitalStatus += "Spo2 "+ utilities.findHighOrLowSpo2(spo2)+"\n";;
+
+    return vitalStatus;
 }
 
-findAbnormalVital(100,95,20);
+console.log(findAbnormalVital(100,95,20));
 expect(vitalsAreOk(100, 95, 70)).to.be.true;
 expect(vitalsAreOk(50, 95, 70)).to.be.false;
 expect(vitalsAreOk(50, 80, 20)).to.be.false;//all fail
