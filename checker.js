@@ -1,13 +1,9 @@
 const expect = require('chai').expect;
 
 function vitalsAreOk(bpm, spo2, respRate) {
-    if(bpm < 70 || bpm > 150) {
+    if(bpm < 70 || bpm > 150 || spo2 < 90 || respRate < 30 || respRate > 95 ) {
         return false;
-    } else if(spo2 < 90) {
-        return false;
-    } else if(respRate < 30 || respRate > 95) {
-        return false;
-    }
+    } 
     return true;
 }
 
