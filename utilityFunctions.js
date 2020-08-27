@@ -22,9 +22,37 @@ function checkResprate(respRate){
     return true;
 }
 
+function findHighOrLowBpm(bpm){
+    if(bpm < 70) {
+        return "low";
+    }
+    else if(bpm > 150){
+        return "high";
+    }
+}
+
+function findHighOrLowSpo2(spo2){
+    if(spo2 < 90) {
+        return "low";
+    }
+}
+
+function findHighOrLowResprate(respRate){
+    if(respRate < 30) {
+        return "low";
+    }
+    else if(respRate > 95){
+        return "high";
+    }
+}
+
 module.exports = {
     checkBpm: checkBpm,
     checkResprate: checkResprate,
     checkSpo2: checkSpo2,
-    checkAll1: checkAll1
+    checkAll1: checkAll1,
+    findHighOrLowBpm: findHighOrLowBpm,
+    findHighOrLowSpo2: findHighOrLowSpo2,
+    findHighOrLowResprate: findHighOrLowResprate
+
 }
