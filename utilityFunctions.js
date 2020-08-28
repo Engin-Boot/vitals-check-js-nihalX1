@@ -1,25 +1,26 @@
 
+let bpm_limits = [70, 150];
+let spo2_limits = [90, 200];
+let respRate_limits = [30 , 95];
+
 function isAllVitalsFine(bpm, spo2, respRate){
-    return !(!isBpmFine(bpm) || !isSpo2Fine(spo2) || !isResprateFine(respRate));
+    return !(!isBpmFine(bpm) || !isSpo2Fine(spo2) || !isRespRateFine(respRate));
 }
 
-function isBpmFine(bpm){
-    if(bpm < 70 || bpm > 150) {
-        return false;
-    }
-    return true;
+function isBpmFine(bpm)
+{
+    return isVitalLimitsFine(bpm, bpm_limits[0], bpm_limits[1]);
 }
-function isSpo2Fine(spo2){
-    if(spo2 < 90) {
-        return false;
-    }
-    return true;
+function isSpo2Fine(spo2)
+{
+    return isVitalLimitsFine(spo2, spo2_limits[0], spo2_limits[1])
 }
-function isResprateFine(respRate){
-    if(respRate < 30 || respRate > 95) {
-        return false;
-    }
-    return true;
+function isRespRateFine(respRate)
+{
+    return isVitalLimitsFine(respRate, respRate_limits[0], respRate_limits[1])
+}
+function isVitalLimitsFine(value , low, high){
+   return (value >= low && value <= high)
 }
 
 function findHighOrLowBpm(bpm){
@@ -57,8 +58,9 @@ function findHighOrLowResprate(respRate){
 
 module.exports = {
     isBpmFine: isBpmFine,
-    isResprateFine: isResprateFine,
+    isRespRateFine: isRespRateFine,
     isSpo2Fine: isSpo2Fine,
+    isVitalLimitsFine: isVitalLimitsFine,
     isAllVitalsFine: isAllVitalsFine,
     findHighOrLowBpm: findHighOrLowBpm,
     findHighOrLowSpo2: findHighOrLowSpo2,
