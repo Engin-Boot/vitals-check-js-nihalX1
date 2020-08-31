@@ -1,17 +1,22 @@
-const expect = require('chai').expect;
+var utilities = require('./utilityFunctions.js');
 
 function vitalsAreOk(bpm, spo2, respRate) {
-    if(bpm < 70 || bpm > 150) {
-        return false;
-    } else if(spo2 < 90) {
-        return false;
-    } else if(respRate < 30 || respRate > 95) {
-        return false;
-    }
-    return true;
+    return utilities.isAllVitalsFine(bpm, spo2, respRate);
 }
 
-expect(vitalsAreOk(100, 95, 70)).to.be.true;
-expect(vitalsAreOk(50, 95, 70)).to.be.false;
+function findAbnormalVital(bpm, spo2, respRate){
+    let vitalStatus = "";
 
-console.log('checker is done');
+    vitalStatus += "BPM "+utilities.findHighOrLowBpm(bpm)+"\n";
+    vitalStatus += "RespRate "+ utilities.findHighOrLowResprate(respRate)+"\n";;
+    vitalStatus += "Spo2 "+ utilities.findHighOrLowSpo2(spo2)+"\n";;
+
+    return vitalStatus;
+}
+
+//console.log(findAbnormalVital(100,95,20));
+
+module.exports = {
+    vitalsAreOk: vitalsAreOk,
+    findAbnormalVital: findAbnormalVital
+}
