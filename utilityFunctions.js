@@ -23,37 +23,28 @@ function isVitalLimitsFine(value , low, high){
    return (value >= low && value <= high)
 }
 
-function findHighOrLowBpm(bpm){
-    if(bpm < 70) {
+function findVitalHighOrLow(value, low, high){
+    if(value < low) {
         return "low";
     }
-    else if(bpm > 150){
+    else if(value > high){
         return "high";
     }
     else{
         return "normal";
     }
+}
+
+function findHighOrLowBpm(bpm){
+    return findVitalHighOrLow(bpm, bpm_limits[0], bpm_limits[1]);
 }
 
 function findHighOrLowSpo2(spo2){
-    if(spo2 < 90) {
-        return "low";
-    }
-    else{
-        return "normal";
-    }
+    return findVitalHighOrLow(spo2, spo2_limits[0], spo2_limits[1]);
 }
 
 function findHighOrLowResprate(respRate){
-    if(respRate < 30) {
-        return "low";
-    }
-    else if(respRate > 95){
-        return "high";
-    }
-    else{
-        return "normal";
-    }
+    return findVitalHighOrLow(respRate, respRate_limits[0], respRate_limits[1]);
 }
 
 module.exports = {
@@ -65,5 +56,4 @@ module.exports = {
     findHighOrLowBpm: findHighOrLowBpm,
     findHighOrLowSpo2: findHighOrLowSpo2,
     findHighOrLowResprate: findHighOrLowResprate
-
 }

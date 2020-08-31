@@ -1,6 +1,7 @@
 var checker = require('./checker');
+const { findAbnormalVital } = require('./checker');
 const expect = require('chai').expect;
-
+console.log(findAbnormalVital(50,50,100));
 expect(checker.vitalsAreOk(100, 95, 70)).to.be.true;
 expect(checker.vitalsAreOk(50, 80, 20)).to.be.false;//all fail
 expect(checker.vitalsAreOk(200, 80, 20)).to.be.false;//all fail
